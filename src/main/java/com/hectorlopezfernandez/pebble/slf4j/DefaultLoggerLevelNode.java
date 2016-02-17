@@ -10,24 +10,24 @@ import com.mitchellbosecke.pebble.template.EvaluationContext;
 import com.mitchellbosecke.pebble.template.PebbleTemplateImpl;
 import com.mitchellbosecke.pebble.template.ScopeChain;
 
-public class DefaultJodaPatternNode extends AbstractRenderableNode {
+public class DefaultLoggerLevelNode extends AbstractRenderableNode {
 
     private final Expression<?> value;
 
-    public DefaultJodaPatternNode(int lineNumber, Expression<?> value) {
+    public DefaultLoggerLevelNode(int lineNumber, Expression<?> value) {
         super(lineNumber);
         this.value = value;
     }
 
     @Override
     public void render(PebbleTemplateImpl self, Writer writer, EvaluationContext context) throws PebbleException {
-    	// evaluate and parse pattern
-    	Object evaluatedPattern = value.evaluate(self, context);
-    	if (!(evaluatedPattern instanceof String)) {
-    		throw new IllegalArgumentException("DefaultJodaPattern only supports String patterns. Actual argument was: " + (evaluatedPattern == null ? "null" : evaluatedPattern.getClass().getName()));
+    	// evaluate and parse level
+    	Object evaluatedLevel = value.evaluate(self, context);
+    	if (!(evaluatedLevel instanceof String)) {
+    		throw new IllegalArgumentException("DefaultLoggerLevel only supports String values. Actual argument was: " + (evaluatedLevel == null ? "null" : evaluatedLevel.getClass().getName()));
     	}
     	ScopeChain values = context.getScopeChain();
-    	values.put(JodaExtension.PATTERN_REQUEST_ATTRIBUTE, evaluatedPattern);
+    	values.put(Slf4jExtension.DEFAULT_LOG_LEVEL, evaluatedLevel);
     }
 
     @Override

@@ -8,26 +8,26 @@ import com.mitchellbosecke.pebble.node.expression.Expression;
 import com.mitchellbosecke.pebble.parser.Parser;
 import com.mitchellbosecke.pebble.tokenParser.AbstractTokenParser;
 
-public class DefaultJodaPatternTokenParser extends AbstractTokenParser {
+public class DefaultLoggerLevelTokenParser extends AbstractTokenParser {
 
     @Override
     public RenderableNode parse(Token token, Parser parser) throws ParserException {
     	TokenStream stream = parser.getStream();
         int lineNumber = token.getLineNumber();
 
-        // skip the 'defaultJodaPattern' token
+        // skip the tag token
         stream.next();
-        // get the pattern-defining expression
+        // get the level expression
         Expression<?> value = parser.getExpressionParser().parseExpression();
         // end of tag
         stream.expect(Token.Type.EXECUTE_END);
 
-        return new DefaultJodaPatternNode(lineNumber, value);
+        return new DefaultLoggerLevelNode(lineNumber, value);
     }
 
     @Override
     public String getTag() {
-        return "defaultJodaPattern";
+        return "defaultLoggerLevel";
     }
 
 }
