@@ -1,0 +1,1 @@
+{% loggerLevel "warn" %}{{ slf4j_default_level }}{% endLoggerLevel %}

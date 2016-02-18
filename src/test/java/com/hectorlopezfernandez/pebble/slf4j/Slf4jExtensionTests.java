@@ -38,4 +38,14 @@ public class Slf4jExtensionTests {
 		Assert.assertTrue(output.contains("error randomClassName"));
 	}
 
+	@Test
+	public void testBlockTags() throws Exception {
+		PebbleTemplate compiledTemplate = engine.getTemplate("block-tags.pebble");
+		Map<String, Object> context = new HashMap<>();
+		Writer writer = new StringWriter();
+		compiledTemplate.evaluate(writer, context);
+		String output = writer.toString();
+		Assert.assertTrue(output.contains("warn"));
+	}
+
 }
