@@ -17,6 +17,7 @@ public class Slf4jExtension extends AbstractExtension {
         parsers.add(new DefaultLoggerLevelTokenParser());
         parsers.add(new DefaultLoggerNameTokenParser());
         parsers.add(new LoggerLevelTokenParser());
+        parsers.add(new LoggerNameTokenParser());
         return parsers;
     }
 
