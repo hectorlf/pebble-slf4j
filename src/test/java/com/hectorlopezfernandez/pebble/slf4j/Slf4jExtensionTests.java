@@ -45,7 +45,7 @@ public class Slf4jExtensionTests {
 		Writer writer = new StringWriter();
 		compiledTemplate.evaluate(writer, context);
 		String output = writer.toString();
-		Assert.assertTrue(output.contains("warn"));
+		Assert.assertTrue(output.contains("warn test"));
 	}
 
 }
