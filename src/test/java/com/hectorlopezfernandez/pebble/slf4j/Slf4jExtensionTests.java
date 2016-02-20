@@ -48,4 +48,14 @@ public class Slf4jExtensionTests {
 		Assert.assertTrue(output.contains("warn test"));
 	}
 
+	@Test
+	public void testLogTag() throws Exception {
+		PebbleTemplate compiledTemplate = engine.getTemplate("log-tag.pebble");
+		Map<String, Object> context = new HashMap<>();
+		Writer writer = new StringWriter();
+		compiledTemplate.evaluate(writer, context);
+		String output = writer.toString();
+		Assert.assertTrue(output.isEmpty());
+	}
+
 }
