@@ -7,14 +7,14 @@ repositories {
 
 project.sourceCompatibility = '1.7'
 project.archivesBaseName = 'slf4j-extension'
-project.version = '0.0.0'
+project.version = '1.0.0'
 
 dependencies {
    compile 'org.slf4j:slf4j-api:1.7.16'
-   compile 'ch.qos.logback:logback-classic:1.1.5'
    compile 'com.mitchellbosecke:pebble:2.1.0'
    
    testCompile 'junit:junit:4.12'
+   testCompile 'ch.qos.logback:logback-classic:1.1.5'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
