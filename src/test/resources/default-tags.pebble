@@ -1,1 +1,1 @@
-{% defaultLoggerLevel "error" %}{% defaultLoggerName "randomClassName" %}{{ slf4j_default_level }} {{ slf4j_default_logger }}
+{% defaultLoggerLevel "error" %}{% defaultLoggerName "randomClassName" %}{{ slf4j_default_level }} {{ slf4j_default_logger.name }}

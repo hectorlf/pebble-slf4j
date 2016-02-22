@@ -1,1 +1,1 @@
-{% loggerLevel "warn" %}{{ slf4j_default_level }}{% endLoggerLevel %} {% loggerName "test" %}{{ slf4j_default_logger }}{% endLoggerName %}
+{% loggerLevel "warn" %}{{ slf4j_default_level }}{% endLoggerLevel %} {% loggerName "test" %}{{ slf4j_default_logger.name }}{% endLoggerName %}
