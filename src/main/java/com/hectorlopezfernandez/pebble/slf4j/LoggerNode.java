@@ -15,14 +15,14 @@ import com.mitchellbosecke.pebble.template.EvaluationContext;
 import com.mitchellbosecke.pebble.template.PebbleTemplateImpl;
 import com.mitchellbosecke.pebble.template.ScopeChain;
 
-public class LoggerNameNode extends AbstractRenderableNode {
+public class LoggerNode extends AbstractRenderableNode {
 
-	private static final Logger logger = LoggerFactory.getLogger(LoggerNameNode.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoggerNode.class);
 
     private final Expression<?> value;
     private final BodyNode body;
 
-    public LoggerNameNode(int lineNumber, Expression<?> value, BodyNode body) {
+    public LoggerNode(int lineNumber, Expression<?> value, BodyNode body) {
         super(lineNumber);
         this.value = value;
         this.body = body;
@@ -38,11 +38,11 @@ public class LoggerNameNode extends AbstractRenderableNode {
     	// create a scope with the new name and process the body
     	ScopeChain values = context.getScopeChain();
     	values.pushScope();
-    	values.put(Slf4jExtension.DEFAULT_LOGGER_NAME, evaluatedName);
+    	values.put(Slf4jExtension.DEFAULT_LOGGER, LoggerFactory.getLogger(evaluatedName.toString()));
     	body.render(self, writer, context);
     	// check if scope is the same and clean it, else warn (there's nothing more we can do about it)
-    	if (values.currentScopeContainsVariable(Slf4jExtension.DEFAULT_LOGGER_NAME)) values.popScope();
-    	else logger.warn("Could not clean scoped name '{}' because a child node opened a scope without closing it. The name will live for the rest of the current render.", evaluatedName);
+    	if (values.currentScopeContainsVariable(Slf4jExtension.DEFAULT_LOGGER)) values.popScope();
+    	else logger.warn("Could not clean scoped name '{}' because a child node opened a scope without closing it. The logger will live for the rest of the current render.", evaluatedName);
     }
 
     @Override

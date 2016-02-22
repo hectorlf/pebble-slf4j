@@ -38,11 +38,13 @@ public class LogNode extends AbstractRenderableNode {
     		Object evaluatedName = name.evaluate(self, context);
     		logger = LoggerFactory.getLogger(evaluatedName.toString());
     	} else {
-    		Object defaultName = values.get(Slf4jExtension.DEFAULT_LOGGER_NAME);
-    		if (defaultName != null) {
-    			logger = LoggerFactory.getLogger(defaultName.toString());
+    		Object defaultLogger = values.get(Slf4jExtension.DEFAULT_LOGGER);
+    		if (defaultLogger != null) {
+    			logger = (Logger)defaultLogger;
     		} else {
     			logger = LoggerFactory.getLogger(self.getName());
+    			// store the "last resort logger" as the default
+    			values.put(Slf4jExtension.DEFAULT_LOGGER, logger);
     		}
     	}
     	// resolve level

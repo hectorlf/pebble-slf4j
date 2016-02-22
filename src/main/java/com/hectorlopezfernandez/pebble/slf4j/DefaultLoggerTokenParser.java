@@ -8,7 +8,7 @@ import com.mitchellbosecke.pebble.node.expression.Expression;
 import com.mitchellbosecke.pebble.parser.Parser;
 import com.mitchellbosecke.pebble.tokenParser.AbstractTokenParser;
 
-public class DefaultLoggerNameTokenParser extends AbstractTokenParser {
+public class DefaultLoggerTokenParser extends AbstractTokenParser {
 
     @Override
     public RenderableNode parse(Token token, Parser parser) throws ParserException {
@@ -22,7 +22,7 @@ public class DefaultLoggerNameTokenParser extends AbstractTokenParser {
         // end of tag
         stream.expect(Token.Type.EXECUTE_END);
 
-        return new DefaultLoggerNameNode(lineNumber, value);
+        return new DefaultLoggerNode(lineNumber, value);
     }
 
     @Override

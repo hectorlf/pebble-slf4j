@@ -10,7 +10,7 @@ import com.mitchellbosecke.pebble.parser.Parser;
 import com.mitchellbosecke.pebble.parser.StoppingCondition;
 import com.mitchellbosecke.pebble.tokenParser.AbstractTokenParser;
 
-public class LoggerNameTokenParser extends AbstractTokenParser {
+public class LoggerTokenParser extends AbstractTokenParser {
 	
 	private static final String TOKEN_START = "loggerName";
 	private static final String TOKEN_END = "endLoggerName";
@@ -40,7 +40,7 @@ public class LoggerNameTokenParser extends AbstractTokenParser {
         // end of end tag
         stream.expect(Token.Type.EXECUTE_END);
 
-        return new LoggerNameNode(lineNumber, value, body);
+        return new LoggerNode(lineNumber, value, body);
     }
 
     @Override
