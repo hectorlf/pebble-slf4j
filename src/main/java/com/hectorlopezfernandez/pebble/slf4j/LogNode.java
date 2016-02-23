@@ -48,43 +48,25 @@ public class LogNode extends AbstractRenderableNode {
     		}
     	}
     	// resolve level
-    	String activeLevel = null;
+    	LogLevel activeLevel = null;
     	if (level == null) {
     		Object defaultLevel = values.get(Slf4jExtension.DEFAULT_LOG_LEVEL);
     		if (defaultLevel == null) {
     			// no established level means DEBUG, try to find as fast as possible if we should log
     			if (!logger.isDebugEnabled()) return;
-    			activeLevel = "debug";
+    			activeLevel = LogLevel.DEBUG;
     		} else {
-    			activeLevel = defaultLevel.toString();
+    			activeLevel = (LogLevel)defaultLevel;
     		}
     	} else {
     		Object evaluatedLevel = level.evaluate(self, context);
-    		activeLevel = evaluatedLevel.toString().trim().toLowerCase();
+    		activeLevel = LogLevel.valueOf(evaluatedLevel.toString().trim().toUpperCase());
     	}
     	// at this point we are going to log anyway, so parse the tag's body
     	StringWriter sw = new StringWriter();
     	body.render(self, sw, context);
     	// do the logging thing
-    	switch (activeLevel) {
-    	case "error":
-    		logger.error(sw.toString());
-    		break;
-    	case "warn":
-    		logger.warn(sw.toString());
-    		break;
-    	case "info":
-    		logger.info(sw.toString());
-    		break;
-    	case "debug":
-    		logger.debug(sw.toString());
-    		break;
-    	case "trace":
-    		logger.trace(sw.toString());
-    		break;
-    	default:
-    		throw new IllegalArgumentException("Level argument is not a valid Slf4j log level: " + activeLevel);
-    	}
+    	activeLevel.log(logger, sw.toString());
     }
 
     @Override

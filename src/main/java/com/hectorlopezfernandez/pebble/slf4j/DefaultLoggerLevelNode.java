@@ -26,8 +26,9 @@ public class DefaultLoggerLevelNode extends AbstractRenderableNode {
     	if (!(evaluatedLevel instanceof String)) {
     		throw new IllegalArgumentException("DefaultLoggerLevel only supports String values. Actual argument was: " + (evaluatedLevel == null ? "null" : evaluatedLevel.getClass().getName()));
     	}
+    	LogLevel level = LogLevel.valueOf(evaluatedLevel.toString().trim().toUpperCase());
     	ScopeChain values = context.getScopeChain();
-    	values.put(Slf4jExtension.DEFAULT_LOG_LEVEL, evaluatedLevel);
+    	values.put(Slf4jExtension.DEFAULT_LOG_LEVEL, level);
     }
 
     @Override
