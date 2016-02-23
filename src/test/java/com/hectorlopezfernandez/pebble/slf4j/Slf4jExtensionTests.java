@@ -35,7 +35,7 @@ public class Slf4jExtensionTests {
 		Writer writer = new StringWriter();
 		compiledTemplate.evaluate(writer, context);
 		String output = writer.toString();
-		Assert.assertTrue(output.contains("error randomClassName"));
+		Assert.assertTrue(output.contains("ERROR randomClassName"));
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class Slf4jExtensionTests {
 		Writer writer = new StringWriter();
 		compiledTemplate.evaluate(writer, context);
 		String output = writer.toString();
-		Assert.assertTrue(output.contains("warn test"));
+		Assert.assertTrue(output.contains("WARN test"));
 	}
 
 	@Test
