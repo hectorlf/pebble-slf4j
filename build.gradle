@@ -7,7 +7,7 @@ repositories {
 
 project.sourceCompatibility = '1.7'
 project.archivesBaseName = 'slf4j-extension'
-project.version = '1.0.0'
+project.version = '1.0.1'
 
 dependencies {
    compile 'org.slf4j:slf4j-api:1.7.16'

@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hectorlopezfernandez.pebble</groupId>
   <artifactId>slf4j-extension</artifactId>
-  <version>1.0.0</version>  
+  <version>1.0.1</version>  
   <packaging>jar</packaging>
   <name>Slf4j extension for Pebble Template Engine</name>
   <description>Pebble Template Engine extension supporting functionality resembling Slf4j's jsp tags</description>
